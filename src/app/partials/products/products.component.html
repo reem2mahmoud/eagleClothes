@@ -1,0 +1,75 @@
+<div class="product-section mt-5">
+  <!-- Recently products -->
+  <div class="row recently-products mt-3">
+    <h3 class="section_header text-uppercase my-4">recently products</h3>
+    <div class="card col-4" *ngFor="let item of recentlyItems" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+      (click)="showProduct(item._id)">
+      <img src="http://placehold.it/350x150/000000" class="card-img-top" alt="...">
+      <div class="card-body">
+        <div class="card_content">
+          <span class="card-title float-start fs-3">{{item.title}}</span>
+          <span class="text-muted me-5 float-end fs-5">{{item.price}}LE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Discount products -->
+  <div class="row feature-products mt-3">
+    <h3 class="section_header text-uppercase my-4">featured products</h3>
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+      <div ngxSlickItem class="slide card" *ngFor="let item of discountItems" data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop" (click)="showProduct(item._id)">
+        <img src="http://placehold.it/350x150/000000" class="card-img-top" alt="...">
+        <div class="card-body">
+          <div class="card_content">
+            <span class="card-title float-start fs-3">{{item.title}}</span>
+            <span class="text-muted me-5 float-end fs-5">{{item.price}}LE</span>
+          </div>
+        </div>
+        <label> </label>
+      </div>
+    </ngx-slick-carousel>
+    <div class="my-3 text-center">
+      <a class="text-capitalize text-black mx-3" (click)="slickModal.slickPrev()">
+        <i class="fas fa-chevron-circle-left fa-3x text-warning"></i>
+      </a>
+      <a class="text-capitalize text-black mx-3" (click)="slickModal.slickNext()">
+        <i class="fas fa-chevron-circle-right fa-3x text-warning"></i>
+      </a>
+    </div>
+  </div>
+  <!-- Modal -->
+
+    
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center" id="staticBackdropLabel">{{product?.title}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-6">
+            <img src="../../../assets/images/p1.jpg">
+          </div>
+          <div class="col-6">
+            <p class="text-danger fs-2"> {{product.price}} LE</p>
+            <p class="fs-4">{{product.color}} </p>
+            <div class="bg-success text-white fs-5 items_in_stock">
+              <span class="text-center px-2">Items in stock {{product.number_in_stock}}</span>
+            </div>
+            <p>{{product.description}}</p>
+            <div class="float-end">
+              <a>
+                <i [ngClass]="cartClass" (click)="checkCartCase(product._id)"></i></a>
+              <a>
+                <i [ngClass]="wishListClass"  (click)="checkWishlistCase(product._id)" ></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

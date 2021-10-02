@@ -1,0 +1,30 @@
+    <!-- UpperMenu -->
+    <div class="upper_menu">
+        <img src="../../../assets/images/profileImg.png" routerLink="/me">
+        <ul class="list-unstyled d-flex">
+            <li *ngIf="_userService.isLoggedIn" class="mx-2 logout" >
+                <a  class="text-capitalize text-white" (click)="logout()">
+                    <i class="fas fa-sign-out-alt text-warning mx-md-2 mx-sm-1 mx-3 fa-lg"></i><span
+                        class="d-sm-inline d-none" >checkout</span>
+                </a>
+            </li>
+            <li *ngIf="!_userService.isLoggedIn" class="mx-2">
+                <a class="text-capitalize text-white" routerLink="/account">
+                    <i class="fas fa-user-tie text-success mx-md-2 mx-sm-1 mx-3 fa-lg"
+                    ></i><span class="d-sm-inline d-none" >Register</span>
+                </a>
+            </li>
+            <li *ngIf="_userService.isLoggedIn" class="mx-2">
+                <a href="#" class="text-capitalize text-white" routerLink="/my-cart">
+                    <i class="fas fa-cart-plus text-primary mx-md-2 mx-sm-1 mx-3 fa-lg"></i>
+                    <span class="d-sm-inline d-none">cart</span>
+                </a>
+            </li>
+            <li *ngIf="_userService.isLoggedIn" class="mx-2">
+                <a href="#" class="text-capitalize text-white" routerLink="/my-wishlist">
+                    <i class="far fa-heart fa-lg text-danger mx-md-2 mx-sm-1 mx-3"></i>
+                    <span class="d-sm-inline d-none">wishlist</span>
+                </a>
+            </li>
+        </ul>
+    </div>
